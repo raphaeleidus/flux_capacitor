@@ -2,9 +2,7 @@
 
 # FluxCapacitor
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/flux_capacitor`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Sometimes you want to change a feature or deploy a new feature but doing so all at once might take down some service. Enter Flux Capacitor. It allows you to gradually include more historical content in the new feature while allowing all future content to start out with the new feature already live.
 
 ## Installation
 
