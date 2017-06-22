@@ -10,8 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["raphaeleidus@gmail.com"]
 
   spec.summary       = %q{Utility for progressively rolling out a feature to existing content}
-  spec.description   = %q{When you have some service that might not be able to handle a large transition of historical content, say a dynamic image service.
-    Instead of changing everything at once you can use the flux capacitor to progressively enable the new functionality based on content age.}
+  spec.description   = File.read('README.md')
   spec.homepage      = "https://github.com/raphaeleidus/flux_capacitor"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
