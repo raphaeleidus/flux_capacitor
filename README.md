@@ -25,9 +25,11 @@ Or install it yourself as:
 ```ruby
 require 'flux_capacitor'
 
-pivot = DateTime.parse('2017/08/14 00:00:00-000') # Everything after this date will have the new feature. This is the point in time when your new feature will start to go live
-oldest = MyModel.first.created_at # If you are using active record finding your oldest item is pretty easy, otherwise if you know the date of your first item, just use that
-end_point = DateTime.parse('2017/09/14') # At this point the feature should be fully rolled out and it is safe to remove the Flux Capacitor. This dictates how quickly the feature rolls out. If you are concerned about overloading a required service set this to farther in the future to lower load
+pivot = DateTime.parse('2017/08/14 00:00:00-000') # when do you want to start rolling out the feature
+oldest = MyModel.first.created_at # If you are using active record finding your oldest item is pretty easy
+# otherwise if you know the date of your first item, just use that
+end_point = DateTime.parse('2017/09/14') # The point where the feature is fully rolled out/safe to remove the Flux Capacitor.
+# This dictates how quickly the feature rolls out. If you are concerned about overloading a required service set this to farther in the future
 
 FEATURE_1_CAPACITOR = Flux::Capacitor.new(pivot, end_point, oldest)
 
