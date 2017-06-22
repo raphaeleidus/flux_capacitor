@@ -5,10 +5,9 @@ require 'murmurhash3'
 module Flux
 
   class Capacitor
-    attr_reader :pivot, :pivot_ts, :time_dilation
+    attr_reader :pivot, :time_dilation
     def initialize (start_time, completion_target, oldest_target = Capacitor.oldest_string_time(start_time))
       @pivot = start_time
-      @pivot_ts = pivot.strftime("%s").to_i
       time_to_complete = seconds_between(completion_target, pivot)
       dilation = seconds_between(pivot, oldest_target).to_f / time_to_complete.to_f
       @time_dilation = dilation
