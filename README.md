@@ -1,4 +1,5 @@
 [![Gem Version](https://badge.fury.io/rb/flux_capacitor.svg)](https://badge.fury.io/rb/flux_capacitor)
+[![security](https://hakiri.io/github/raphaeleidus/flux_capacitor/master.svg)](https://hakiri.io/github/raphaeleidus/flux_capacitor/master)
 
 # FluxCapacitor
 
@@ -25,13 +26,13 @@ Or install it yourself as:
 ```ruby
 require 'flux_capacitor'
 
-pivot = DateTime.parse('2017/08/14 00:00:00-000') # when do you want to start rolling out the feature
+start = DateTime.parse('2017/08/14 00:00:00-000') # when do you want to start rolling out the feature
 oldest = MyModel.first.created_at # If you are using active record finding your oldest item is pretty easy
 # otherwise if you know the date of your first item, just use that
 end_point = DateTime.parse('2017/09/14') # The point where the feature is fully rolled out/safe to remove the Flux Capacitor.
 # This dictates how quickly the feature rolls out. If you are concerned about overloading a required service set this to farther in the future
 
-FEATURE_1_CAPACITOR = Flux::Capacitor.new(pivot, end_point, oldest)
+FEATURE_1_CAPACITOR = Flux::Capacitor.new(start, end_point, oldest)
 
 def controller_method
     model = MyModel.find(params[:id])
@@ -46,15 +47,15 @@ end
 If your feature doesn't map well to something where you have a date for each piece of content you can still use flux capacitor. It can also take strings and distribute them evenly over your rollout period using the murmur3 hashing algorithm.
 ```ruby
 require 'flux_capacitor'
-pivot = DateTime.parse('2017/08/14 00:00:00-000') # when do you want to start rolling out the feature
+start = DateTime.parse('2017/08/14 00:00:00-000') # when do you want to start rolling out the feature
 end_point = DateTime.parse('2017/09/14') # when do you want the rollout to finish
 
 # NOTE: We don't need an oldest date when using strings
-FEATURE_1_CAPACITOR = Flux::Capacitor.new(pivot, end_point)
+FEATURE_1_CAPACITOR = Flux::Capacitor.new(start, end_point)
 
 def controller_method
     model = MyModel.find(params[:id])
-    if FEATURE_1_CAPACITOR.travel_to?(model.uuid)
+    if FEATURE_1_CAPACITOR.travel_to?(model.uuid) # Any string will work here
         use_new_feature
     else
         use_old_feature
