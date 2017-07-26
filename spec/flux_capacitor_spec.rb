@@ -52,16 +52,16 @@ RSpec.describe Flux do
     end
   end
 
-  describe Flux::Falsey do
-    let (:blank) { Flux::Falsey.new() }
+  describe Flux::Falsy do
+    let (:blank) { Flux::Falsy.new() }
     it 'is a Flux::Capacitor' do
       expect(blank).to be_a(Flux::Capacitor)
     end
     it 'can be initialized with the date signature' do
-     expect(Flux::Falsey.new(pivot, end_point, oldest)).to be_a(Flux::Capacitor)
+     expect(Flux::Falsy.new(pivot, end_point, oldest)).to be_a(Flux::Capacitor)
     end
     it 'can be initialized with the string signature' do
-     expect(Flux::Falsey.new(pivot, end_point)).to be_a(Flux::Capacitor)
+     expect(Flux::Falsy.new(pivot, end_point)).to be_a(Flux::Capacitor)
     end
     it '#travel_to?(DateTime) returns false' do
       expect(blank.travel_to?(DateTime.now)).to eq(false)
@@ -72,16 +72,16 @@ RSpec.describe Flux do
     end
   end
 
-  describe Flux::Truethy do
-    let (:blank) { Flux::Truethy.new() }
+  describe Flux::Truthy do
+    let (:blank) { Flux::Truthy.new() }
     it 'is a Flux::Capacitor' do
       expect(blank).to be_a(Flux::Capacitor)
     end
     it 'can be initialized with the date signature' do
-     expect(Flux::Truethy.new(pivot, end_point, oldest)).to be_a(Flux::Capacitor)
+     expect(Flux::Truthy.new(pivot, end_point, oldest)).to be_a(Flux::Capacitor)
     end
     it 'can be initialized with the string signature' do
-     expect(Flux::Truethy.new(pivot, end_point)).to be_a(Flux::Capacitor)
+     expect(Flux::Truthy.new(pivot, end_point)).to be_a(Flux::Capacitor)
     end
     it '#travel_to?(DateTime) returns true' do
       expect(blank.travel_to?(DateTime.now)).to eq(true)

@@ -1,5 +1,5 @@
 module Flux
-  class Falsey < Capacitor
+  class Falsy < Capacitor
     def initialize(*args)
       @pivot = DateTime.now
       @time_dilation = 2.0
@@ -10,7 +10,7 @@ module Flux
     end
   end
 
-  class Truethy < Capacitor
+  class Truthy < Capacitor
     def initialize(*args)
       @pivot = DateTime.now
       @time_dilation = 2.0

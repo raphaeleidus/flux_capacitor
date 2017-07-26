@@ -65,6 +65,20 @@ end
 
 One note about using the string hashing method, new content could get the old feature for a while.
 
+### Testing
+
+In order to test your code while migrating from one form to the other you can replace `Flux::Capacitor` with `Flux::Truthy` or `Flux::Falsy` They both expose the same API as a regular Capacitor but they `travel_to?` method will always return `true` and `false` respectively.
+
+When working with rails you can do something like this:
+```ruby
+start = DateTime.parse('2017/08/14 00:00:00-000')
+end_point = DateTime.parse('2017/09/14')
+oldest = MyModel.first.created_at
+FEATURE_1_CAPACITOR = Rails.env.test? ? Flux::Falsy.new : Flux::Capacitor.new(start, end_point, oldest)
+```
+
+This will make it so for your tests everything will be treated as before.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
